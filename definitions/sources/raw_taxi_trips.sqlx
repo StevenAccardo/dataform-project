@@ -1,0 +1,6 @@
+config {
+  type: "declaration",
+  schema: "raw",
+  name: "tlc_yellow_trips_2022",
+  description: "Raw NYC taxi trips loaded from BigQuery public dataset"
+}

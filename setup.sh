@@ -8,6 +8,7 @@ echo "Setting up GCP project: $GCP_PROJECT_ID"
 echo "Enabling APIs..."
 gcloud services enable bigquery.googleapis.com
 gcloud services enable dataform.googleapis.com
+gcloud services enable secretmanager.googleapis.com
 
 echo "Creating datasets..."
 bq mk --dataset --location=$BQ_LOCATION "$GCP_PROJECT_ID:raw"
