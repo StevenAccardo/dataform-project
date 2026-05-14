@@ -13,8 +13,8 @@ SELECT
   ROUND(AVG(fare_amount), 2)               AS avg_fare,
   ROUND(AVG(tip_amount), 2)                AS avg_tip,
   ROUND(SUM(total_amount), 2)              AS total_revenue,
-  COUNTIF(payment_type = 'Credit Card')    AS credit_card_trips,
-  COUNTIF(payment_type = 'Cash')           AS cash_trips
+  COUNTIF(payment_type = '1')              AS credit_card_trips,
+  COUNTIF(payment_type = '2')              AS cash_trips
 FROM ${ref("stg_taxi_trips")}
 GROUP BY trip_date
 ORDER BY trip_date

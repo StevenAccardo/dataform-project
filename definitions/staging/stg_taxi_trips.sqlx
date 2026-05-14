@@ -4,7 +4,7 @@ config {
   description: "Cleaned and standardised NYC taxi trips",
   tags: ["staging", "taxi"],
   assertions: {
-    nonNull: ["unique_key", "pickup_datetime", "fare_amount"],
+    nonNull: ["pickup_datetime", "fare_amount", "vendor_id"],
     rowConditions: [
       "trip_distance > 0",
       "fare_amount > 0"
@@ -13,18 +13,27 @@ config {
 }
 
 SELECT
-  unique_key,
-  taxi_type,
-  trip_distance,
-  fare_amount,
-  tip_amount,
-  total_amount,
-  payment_type,
+  vendor_id,
   pickup_datetime,
   dropoff_datetime,
-  TIMESTAMP_DIFF(dropoff_datetime, pickup_datetime, MINUTE) AS trip_duration_minutes,
+  passenger_count,
+  trip_distance,
+  rate_code,
+  store_and_fwd_flag,
+  payment_type,
+  fare_amount,
+  extra,
+  mta_tax,
+  tip_amount,
+  tolls_amount,
+  imp_surcharge,
+  airport_fee,
+  total_amount,
   pickup_location_id,
-  dropoff_location_id
+  dropoff_location_id,
+  data_file_year,
+  data_file_month,
+  TIMESTAMP_DIFF(dropoff_datetime, pickup_datetime, MINUTE) AS trip_duration_minutes
 FROM ${ref("tlc_yellow_trips_2022")}
 WHERE
   trip_distance > 0
